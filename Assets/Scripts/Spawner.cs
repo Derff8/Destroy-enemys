@@ -8,6 +8,8 @@ public class Spawner : MonoBehaviour
     private float _minDistanceToSpawn = -4.5f;
     private float _maxDistanceToSpawn = 4.5f;
 
+    private float _maxCountEnemys = 10f;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -27,7 +29,7 @@ public class Spawner : MonoBehaviour
         {
             Enemy newEnemy = SpawnEnemy();
             SwitchColor(newEnemy, Color.red);
-            _deathService.Register(newEnemy, () => _deathService.CountEnemys() >= 10);
+            _deathService.Register(newEnemy, () => _deathService.CountEnemys() > _maxCountEnemys);
         }
     }
 
