@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
 
     private float _maxCountEnemys = 10f;
 
+    private float _timeToDie = 5;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -22,7 +24,7 @@ public class Spawner : MonoBehaviour
         {
             Enemy newEnemy = SpawnEnemy();
             SwitchColor(newEnemy, Color.blue);
-            _deathService.Register(newEnemy, () => newEnemy.TimeToDie <= 0);
+            _deathService.Register(newEnemy, () => Time.time - newEnemy.SpawnTime >= _timeToDie);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
